@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Daniela Piña — Motion Designer. Showreel of motion graphics for brands and broadcast media.">
+<link rel="icon" type="image/png" href="logo.png">
+<title>Daniela Piña Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap">
+<style>
+  /* Layout: same identity as Daniela's main portfolio (white, Kanit, indigo→violet→coral line, black pineapple). Nav, short hero text, then the reel. Single light look on purpose. */
+  :root {
+    --bg: #ffffff;
+    --fg: #171717;
+    --muted: #737373;
+    --soft: #a3a3a3;
+    --line: rgba(0, 0, 0, 0.1);
+    --indigo: #4453E8;
+    --violet: #8A4FD8;
+    --coral: #F2784A;
+    --font: "Kanit", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-inline: clamp(16px, 5vw, 64px);
+  }
+  .glow { position: fixed; pointer-events: none; filter: blur(80px); z-index: 0; }
+  .glow.a { top: 8%; right: -10%; width: 45%; height: 45%; background: radial-gradient(ellipse, rgba(68, 83, 232, 0.07) 0%, transparent 70%); }
+  .glow.b { bottom: -5%; left: -10%; width: 40%; height: 45%; background: radial-gradient(ellipse, rgba(242, 120, 74, 0.07) 0%, transparent 70%); }
+
+  .wrap { position: relative; z-index: 1; max-width: 1180px; margin-inline: auto; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-block: 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { height: 32px; width: auto; display: block; }
+  .brand span { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+
+  .lang {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--line); border-radius: 999px; padding: 2px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .lang button {
+    font: inherit; letter-spacing: inherit; font-weight: 300;
+    border: 0; background: transparent; color: var(--soft);
+    padding: 5px 11px; border-radius: 999px; cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .lang button:hover { color: var(--fg); }
+  .lang button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+  .lang button:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+
+  header {
+    display: grid; gap: 0;
+    padding-block: clamp(36px, 7vw, 88px) clamp(28px, 4vw, 44px);
+  }
+  .kicker {
+    margin: 0 0 16px;
+    font-size: clamp(12px, 1.2vw, 14px);
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+  }
+  h1 {
+    margin: 0;
+    font-weight: 700; text-transform: uppercase;
+    line-height: 0.95; letter-spacing: -0.02em;
+    font-size: clamp(44px, 8vw, 120px);
+    text-wrap: balance;
+  }
+  .gradient-line {
+    height: 2px; width: min(230px, 60%); border-radius: 999px; margin-top: 22px;
+    background: linear-gradient(90deg, var(--indigo) 0%, var(--violet) 50%, var(--coral) 100%);
+  }
+  .desc {
+    margin: 18px 0 0;
+    max-width: 46ch;
+    color: var(--muted);
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.6;
+  }
+
+  .reel { margin: 0; }
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 9; max-width: 100%;
+    border-radius: 16px; overflow: hidden;
+    background: #f5f5f5;
+    box-shadow: 0 30px 70px -35px rgba(68, 83, 232, 0.35), 0 20px 50px -30px rgba(242, 120, 74, 0.3);
+  }
+  video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+
+  footer {
+    margin-top: clamp(40px, 6vw, 72px);
+    padding-block: 0 32px;
+  }
+  footer .gradient-line { width: 100%; height: 1px; margin: 0 0 24px; opacity: 0.4; }
+  .foot-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--soft);
+  }
+  .foot-row img { height: 24px; width: auto; opacity: 0.6; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .rise { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
+    .gradient-line.rise { transform-origin: left; animation-name: grow; }
+    @keyframes rise { from { transform: translateY(16px); } to { transform: none; } }
+    @keyframes grow { from { transform: scaleX(0.15); } to { transform: none; } }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow a" aria-hidden="true"></div>
+<div class="glow b" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">
+      <img src="logo.png" alt="Daniela Piña">
+      <span>Daniela Piña</span>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-es" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </nav>
+
+  <main>
+    <header>
+      <p class="kicker rise" data-i18n="kicker">Showreel · Motion Graphics</p>
+      <h1 class="rise d1" data-i18n="title">Motion Designer</h1>
+      <div class="gradient-line rise d2" aria-hidden="true"></div>
+      <p class="desc rise d3" data-i18n="desc">Here is a selection of projects I have collaborated on over the past few years for various brands and broadcast media.</p>
+    </header>
+
+    <figure class="reel rise d4">
+      <div class="frame">
+        <video id="reel" src="reel.mp4" poster="poster.jpg" controls playsinline preload="metadata" aria-label="Daniela Piña motion graphics reel"></video>
+      </div>
+    </figure>
+  </main>
+
+  <footer>
+    <div class="gradient-line" aria-hidden="true"></div>
+    <div class="foot-row">
+      <img src="logo.png" alt="">
+      <span>© 2026 Daniela Piña</span>
+      <span data-i18n="location">Barcelona, Spain</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var t = {
+      en: {
+        kicker: "Showreel · Motion Graphics",
+        title: "Motion Designer",
+        desc: "Here is a selection of projects I have collaborated on over the past few years for various brands and broadcast media.",
+        location: "Barcelona, Spain",
+        video: "Daniela Piña motion graphics reel"
+      },
+      es: {
+        kicker: "Reel · Motion Graphics",
+        title: "Motion Designer",
+        desc: "Esta es una selección de proyectos en los que he colaborado durante los últimos años para distintas marcas y medios de televisión.",
+        location: "Barcelona, España",
+        video: "Reel de motion graphics de Daniela Piña"
+      }
+    };
+    function setLang(lang) {
+      var d = t[lang] || t.en;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        el.textContent = d[el.getAttribute("data-i18n")];
+      });
+      document.getElementById("reel").setAttribute("aria-label", d.video);
+      document.querySelectorAll(".lang button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+      });
+      try { localStorage.setItem("dp-lang", lang); } catch (e) {}
+    }
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.lang); });
+    });
+    var saved = "en";
+    try { saved = localStorage.getItem("dp-lang") || "en"; } catch (e) {}
+    if (location.hash === "#es") saved = "es";
+    setLang(saved);
+  })();
+</script>
+</body>
+</html>
