@@ -111,6 +111,33 @@
   }
   .foot-row img { height: 24px; width: auto; opacity: 0.6; }
 
+  .cta {
+    display: inline-flex; margin-top: 28px; width: fit-content;
+    padding: 1px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(90deg, var(--indigo) 0%, var(--violet) 50%, var(--coral) 100%);
+    transition: box-shadow 0.3s;
+  }
+  .cta:hover { box-shadow: 0 12px 30px -12px rgba(138, 79, 216, 0.55); }
+  .cta:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+  .cta-inner {
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 8px 8px 8px 20px; border-radius: 999px;
+    background: var(--bg); transition: background-color 0.3s;
+  }
+  .cta-text { display: flex; flex-direction: column; line-height: 1.25; }
+  .cta-kicker { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--soft); }
+  .cta-label { font-size: 14px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg); transition: color 0.3s; }
+  .cta-icon {
+    width: 32px; height: 32px; border-radius: 50%; flex: none;
+    display: grid; place-items: center;
+    background: var(--fg); color: var(--bg); transition: background-color 0.3s, color 0.3s;
+  }
+  .cta-icon svg { transition: transform 0.3s; }
+  .cta:hover .cta-inner { background: var(--fg); }
+  .cta:hover .cta-label { color: var(--bg); }
+  .cta:hover .cta-icon { background: var(--bg); color: var(--fg); }
+  .cta:hover .cta-icon svg { transform: rotate(45deg); }
+
   @media (prefers-reduced-motion: no-preference) {
     .rise { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
@@ -143,6 +170,17 @@
       <h1 class="rise d1" data-i18n="title">Motion Designer</h1>
       <div class="gradient-line rise d2" aria-hidden="true"></div>
       <p class="desc rise d3" data-i18n="desc">Here is a selection of projects I have collaborated on over the past few years for various brands and broadcast media.</p>
+      <a class="cta rise d4" href="https://danie-pineapple.github.io/">
+        <span class="cta-inner">
+          <span class="cta-text">
+            <span class="cta-kicker" data-i18n="ctaKicker">Portfolio</span>
+            <span class="cta-label" data-i18n="cta">3D Generalist Work</span>
+          </span>
+          <span class="cta-icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </span>
+      </a>
     </header>
 
     <figure class="reel rise d4">
@@ -170,6 +208,8 @@
         title: "Motion Designer",
         desc: "Here is a selection of projects I have collaborated on over the past few years for various brands and broadcast media.",
         location: "Barcelona, Spain",
+        ctaKicker: "Portfolio",
+        cta: "3D Generalist Work",
         video: "Daniela Piña motion graphics reel"
       },
       es: {
@@ -177,6 +217,8 @@
         title: "Motion Designer",
         desc: "Esta es una selección de proyectos en los que he colaborado durante los últimos años para distintas marcas y medios de televisión.",
         location: "Barcelona, España",
+        ctaKicker: "Portafolio",
+        cta: "Trabajos 3D Generalist",
         video: "Reel de motion graphics de Daniela Piña"
       }
     };
